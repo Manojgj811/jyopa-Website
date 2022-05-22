@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <script type="text/javascript" src="{% static 'js/sessionManager.js' %}"></script>
+  <script type="text/javascript">
+    var sId = readCookie('sessionId');
+    if (sId == "") {
+      window.location = "/home/";
+    }
+  </script>
+
+
+  <meta charset="utf-8">
+  <title>Jyopa | Home</title>
+  
+  
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+  <link href="{% static 'img/favicon.png' %}" rel="icon">
+  <link href="{% static 'img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800|Montserrat:300,400,700" rel="stylesheet">
+  <link href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/ionicons/css/ionicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/magnific-popup/magnific-popup.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/ionicons/css/ionicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+
+<body id="body">
+  <div class="overlay"></div>
+
+	
+	<!--==========================
+		Header
+		============================-->
+		<header id="header">
+			<div class="container">
+
+				<div id="logo" class="pull-left">
+<!--         <h1><a href="#body" class="scrollto">Reve<span>al</span></a></h1>
+-->        <!-- Uncomment below if you prefer to use an image logo -->
+<a href="./#body"><img src="img/JyopaLogo.png" alt="" title="" /></a>
+</div>
+
+<nav id="nav-menu-container">
+	<ul class="nav-menu">
+ <li><a href="#"  id="showIntro">Home</a></li>
+                  <li><a href="cons.html">About Us</a></li>
+                  <!--           <li><a href="#services">Services</a></li>
+                     -->          
+                  <li class="menu-active"><a href="#body">Jobseeker</a></li>
+                  <!--           <li><a href="#team">Team</a></li> -->
+                  <li><a href="index.html#contact">Contact</a></li>
+                 <li class="menu-has-children"><a id="username"></a>
+                  <ul>
+                  <li><a href="#" id="showProf" >Profile</a></li>
+                  <li><a href="#" onclick="fileDownload()">Resume</a></li>
+                  <li><a href="#" id="showJobs" >Applied Jobs</a></li>
+                  <li><a href="#" style="color: red" onclick="logout()">Logout</a></li>
+                  </ul> 
+                 </li>   
+  </ul>
+</nav><!-- #nav-menu-container -->
+</div>
+</header><!-- #header -->
+
+<!---
+  Queries Section
+
+-->
+ <!--==========================
+         Intro Section
+         ============================-->
+         <section id="intro">
+
+    <div class="intro-content">
+      <h2>Your next job here!</h2>
+      <div>
+       <form action="/action_page.php" method="get">
+                  <input type="text" class="intro-search" placeholder="ENTER SKILL (JAVA)" name="jobkey" id="jobkey" value="" > 
+                  <input type="text" class="intro-search" placeholder="Location" name="jobkey1" id="jobkey1">
+                  <a href="#jobSearch" class="btn-projects scrollto search_job">Search</a>
+               </form>
+               <h4 style="color: red" id="errorMsg"></h4>
+      </div>
+    </div>
+
+    <div id="intro-carousel" class="owl-carousel" >
+      <!--<div class="item" style="background-image: url('img/intro-carousel/1.jpg');"></div>
+      <div class="item" style="background-image: url('img/intro-carousel/2.jpg');"></div>
+      <div class="item" style="background-image: url('img/intro-carousel/3.jpg');"></div>
+      <div class="item" style="background-image: url('img/intro-carousel/4.jpg');"></div>
+      <div class="item" style="background-image: url('img/intro-carousel/5.jpg');"></div>
+    </div>-->
+
+  </section>
+     
+      <main id="main">
+         <div class="jobs">
+            <div class="section-header">
+               <section id="styled_cards">
+                  <div class="container header">
+                     <div id="jobs" class="row">
+                     </div>
+                  </div>
+               </section>
+            </div>
+         </div>
+      </main>
+    <!-- #User -->
+
+<!--==========================
+      User Interaction Section
+    ============================-->
+         <div  id="appliedJobs" class="appliedJobs">
+            <div class="section-header">
+               <section id="styled_cards">
+                  <div class="container header">
+                     <div id="applied_Jobs" class="row">
+
+                     </div>
+                  </div>
+               </section>
+            </div>
+         </div>
+
+        <!--Profile -->
+       <div id="userProfDet">
+        <div class="section-header">
+        <section id="styled_cards">
+          <div class="container">
+              <div >
+                <div class="box wow fadeInLeft" id="">
+                  <div class="section-header" >
+                    <h2>Profile Details</h2>
+                  </div>
+                  <div class="form">
+                    <form  class="registerCandForm">
+                        <div class="form-row">
+                          <div class="form-group col-md-6"><label >Full Name</label>
+                            <input type="text" name="candidate_name" class="form-control" id="candidate_name" readonly="" />
+                          </div>
+                          <div class="form-group col-md-6"><label>Date of Birth</label>
+                            <input type="text" name="candidateDOB" class="form-control" id="candidateDOB" readonly="" />
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-6"><label>Email Address</label>
+                            <input type="text" name="candidate_emails" class="form-control" id="candidate_emails" readonly="" />
+                          </div>
+                          <div class="form-group col-md-6"><label>Contact Details</label>
+                            <input type="text" name="candidate_contacts" class="form-control" id="candidate_contacts" readonly="" />
+                          </div>
+                        </div>
+                        
+                        <label>Residing Address</label>
+                        <div class="form-row">
+                          <div class="form-group col-md-4">                            
+                            <input type="text" name="city" class="form-control" id="city"  readonly="" />
+                          </div>
+                          <div class="form-group col-md-4">
+                            <input type="text" name="state" class="form-control" id="state" readonly="" />
+                          </div>
+                          <div class="form-group col-md-4">
+                            <input type="text" name="country" class="form-control" id="country" readonly="" />
+                          </div>
+                        </div>
+                        
+                        <div class="form-group">
+                          <div class="form-row">
+                            
+                          <button type="submit" onclick="fileDownload()" style="background-color: green;">View Resume</button> &nbsp&nbsp
+
+                          <button type="submit">
+                            <label for="file">
+                              Upload Resume
+                            </label>
+                          </input>
+                          <input type="file" id="file" style="display:none;" onchange="alert('uploaded')"/>
+                           </button>
+                          
+                          </div>
+                      </div>
+                       </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </section>
+        </div>
+    <!-- #User -->
+
+	<!--==========================
+		Footer
+		============================-->
+		<footer id="footer">
+			<div class="container">
+				<div class="copyright">
+					&copy; Copyright <strong>Jyopa</strong>. All Rights Reserved
+				</div>
+				<div class="credits">
+				<!--
+					All the links in the footer should remain intact.
+					You can delete the links only if you purchased the pro version.
+					Licensing information: https://bootstrapmade.com/license/
+					Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Reveal
+				-->
+				<!--Designed by <a href="https://google.com/">SSquare</a>-->
+			</div>
+		</div>
+	</footer><!-- #footer -->
+
+	<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+  <script src="{% static 'contactform/contactform.js' %}"></script>
+  <script src="{% static 'js/file64.js' %}"></script>
+  <script src="{% static 'js/login.js' %}"></script>
+  <script src="{% static 'js/main.js' %}"></script>
+  <script src="{% static 'js/date_generator.js' %}"></script>
+  <script src="{% static 'lib/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'lib/jquery/jquery-migrate.min.js' %}"></script>
+  <script src="{% static 'js/fileDownload.js' %}"></script>
+  <script src="{% static 'js/user.js' %}"></script>
+  <script src="{% static 'js/sessionManager.js' %}"></script>
+  
+  <script src="{% static 'lib/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+  <script src="{% static 'lib/superfish/hoverIntent.js' %}"></script>
+  <script src="{% static 'lib/superfish/superfish.min.js' %}"></script>
+  <script src="{% static 'lib/wow/wow.min.js' %}"></script>
+  <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'lib/magnific-popup/magnific-popup.min.js' %}"></script>
+  <script src="{% static 'lib/sticky/sticky.js' %}"></script>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+ 
+
+</body>
+</html>

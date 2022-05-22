@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <script type="text/javascript" src="{% static 'js/sessionManager.js' %}"></script>
+  <script type="text/javascript">
+    var sId = readCookie('emp_sessionId');
+    if (sId == "") {
+      window.location = "/home/";
+    }
+  </script>
+  <script src="{% static 'js/cities.js' %}"></script>
+  <meta charset="utf-8">
+  <title>Jyopa | Employee</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+  <link href="{% static 'img/favicon.png' %}" rel="icon">
+  <link href="{% static 'img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800|Montserrat:300,400,700" rel="stylesheet">
+  <link href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/ionicons/css/ionicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/magnific-popup/magnific-popup.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/ionicons/css/ionicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+  
+  
+
+
+
+<link href="{% static 'css/emp.css' %}" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{% static 'stylesheets/grid.css' %}">
+<!--<link rel="stylesheet" type="text/css" href="{% static 'stylesheets/style.css' %}">-->
+	
+</head>
+<header id="header">
+
+
+<body id="body" onload="print_state('jobState');" >
+  <div class="overlay"></div>
+
+  <!--==========================
+    Top Bar
+    ============================-->
+    <nav id="nav-menu-container" class="navbar navbar-expand-md navbar-light margin-top: 45px;" >
+        <div class="logo">
+			<a id="top" href="#"><img src="{% static 'images/logo.jpg' %}" style="width: 20% ; " alt="Visia"></a>
+		</div>
+
+
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <div class="navbar-nav ml-auto">
+	
+	
+	 <a style ="padding-right: 2.5rem;color: #081e5b!important;font-size:17px;"  href="#JobPosting">New Listing</a>
+
+    <a href="#" style="padding-right: 2.5rem;color: red;font-size:17px;" onclick="logout()">Logout</a>	  
+  <!--  <a style="padding-right: 2.5rem;color: #081e5b!important;" href="/home" class="nav-item nav-link">HOME</a>
+    <a style="padding-right: 2.5rem;" href="#" class="nav-item nav-link">ABOUT</a>
+    <a style="padding-right: 2.5rem;" href="#" class="nav-item nav-link">SERVICES</a>
+    <a style="padding-right: 2.5rem;"  href="/team" class="nav-item nav-link">TEAM</a>
+    <a style="padding-right: 2.5rem;" href="/jobseeker" class="nav-item nav-link">JOBSEEKER</a>
+    <a href="#" class="nav-item nav-link">CONTACT</a>-->
+             <!--   <a href="/login" class="nav-item nav-link">LOGIN</a>-->
+	</div>
+            
+	</div>
+   </nav>
+
+
+</header>
+
+<main id="main">
+
+   <!--==========================
+      job Listing Section
+      ============================-->
+
+      <!--Sign up -->
+      
+      <div id="JobPosting">
+        <div class="section-header">
+          <section id="styled_cards">
+            <div class="container">
+              <h2>Add A New Job</h2>
+              <div class="row">
+                <div class="col-lg">
+                  <div class="box wow fadeInLeft" id="newListing">
+                    <div class="section-header">
+                    </div>
+                    <div class="form">
+                      <div id="sendmessage">Added to listing Successfully!</div>
+                      <div id="errormessage"></div>
+                      <form  class="newListing">
+                        <div class="form-row">
+                          <div class="form-group col-md-6"><label class="asterisk_input">Job Title</label>
+                            <input type="text" name="jobTitle" class="form-control" id="jobTitle" placeholder="Title" data-rule="minlen:3" data-msg="Please enter atleast 3 chars" />
+                            <div class="validation"></div>
+                          </div>
+                          <div class="form-group col-md-6"><label class="asterisk_input">Job Type</label>
+                            <select type="text" name="jobType" class="form-control" id="jobType" placeholder="Type" data-rule="minlen:4" data-msg="Please enter at least 4 chars" >
+                              <option value="Permanent">Permanent</option>
+                              <option value="Contract">Contract</option>
+                              <option value="Internship">Internship</option>
+                              <option value="Part-Time">Part-Time</option>
+                              <option value="Work From Home">Work From Home</option>
+                            </select>
+                            <div class="validation"></div>
+                          </div>
+                        </div>
+                        <div class="form-group"><label class="asterisk_input">Job Description</label>
+                          <textarea name="jobDescription" class="form-control" id="jobDescription" rows="5" placeholder="Description" data-rule="minlen:8" data-msg="Please enter few words" ></textarea>
+                          <div class="validation"></div>
+                        </div>
+                        <label class="asterisk_input">Job Location</label>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                            <input type="text" name="jobCountry" class="form-control" value="India" id="jobCountry" placeholder="Country" data-rule="minlen:0" readonly="" />
+                          </div>
+                          <div class="form-group col-md-4">
+                            <select onchange="print_city('jobCity', this.selectedIndex);" type="text" name="jobState" class="form-control" id="jobState" placeholder="State" data-rule="minlen:0" >
+                            </select>
+                          </div>
+                          <div class="form-group col-md-4">                            
+                            <select type="text" name="jobCity" class="form-control " id="jobCity" placeholder="City" data-rule="minlen:3" data-msg="Please enter some value" value="" >
+                              <option value>Select City</option>
+                            </select>     
+                            <div class="validation"></div>
+                          </div>
+
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-4"><label class="asterisk_input">Industry</label>                          
+                            <input type="text" name="jobIndustry" class="form-control" id="jobIndustry" placeholder="Industry" data-rule="minlen:1" data-msg="Please enter some value" />
+                            <div class="validation"></div>
+                          </div>
+                          <div class="form-group col-md-4"><label class="asterisk_input">Salary</label>
+                            <div class="form-inline">
+                            <input type="number" name="jobSalary1" class="form-control col-md-4" id="jobSalary1" placeholder="" data-rule="minlen:1" data-msg="Please enter Valid Salary" />
+                             <label> &nbsp; - &nbsp;  </label>
+                            <input type="number" step="any" name="jobSalary2" class="form-control col-md-4" id="jobSalary2" placeholder="" data-rule="minlen:1" data-msg="Please enter Valid Salary" />
+                            <div class="validation"></div>
+                            <label> &nbsp; LPA</label>
+                          </div>
+                          </div>
+                          <div class="form-group col-md-4"><label class="asterisk_input">Experience</label>
+                            <div class="form-inline">
+                            <input type="number" name="jobExperience1" class="form-control col-md-4" id="jobExperience1" placeholder="" data-rule="minlen:1" data-msg="Please enter Valid Experience" />
+                            <label> &nbsp; - &nbsp;</label>
+                            <input type="number" name="jobExperience2" class="form-control col-md-4" id="jobExperience2" placeholder="" data-rule="minlen:1" data-msg="Please enter Valid Experience" />
+                            <div class="validation"></div>
+                           <label> &nbsp; Years</label>
+                          </div>                            
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-6"><label class="asterisk_input">Qualifications</label>                          
+                            <input type="text" name="jobQualifications" class="form-control" id="jobQualifications" placeholder="BTech/BCA/MCOM" data-rule="minlen:2" data-msg="Please enter some value" />
+                            <div class="validation"></div>
+                          </div>
+                          <div class="form-group col-md-6"><label class="asterisk_input">Job Functions/Skills</label>
+                            <input type="text" name="jobSkills" class="form-control" id="jobSkills" placeholder="MS-OFFICE,Python,JAVA" data-rule="minlen:2" data-msg="Please enter at least 4 chars" />
+                            <div class="validation"></div>
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="text-center col-md-6"><button type="submit" class="list_job">Add A Listing</button></div>
+                          <div class="text-center col-md-6"><button type="reset">Reset</button></div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+      <!-- #User -->
+<!-- Listed Jobs -->
+       <div class="jobs">
+            <div class="section-header">
+               <section id="styled_cards">
+                  <div class="container header">
+                     <div id="listedJobs" class="row">
+                     </div>
+                  </div>
+               </section>
+            </div>
+         </div>
+
+      <!--Candidate Listing -->
+  <section id="services">
+            <div class="container">
+              <div class="section-header">
+                <h2 id="resumeCollection">Applied Candidates</h2>
+              <!--   <a  class="btn-apply closeresumedata ">Close Data</a>
+                <a  class="btn-get-started viewresumedata ">View Data</a>
+ -->              </div>
+              <div id="errorresumeMsg"></div>
+              <div class="container">
+
+                <table class="table" id="resumeCollectionTable">
+                  <thead>
+                    <tr>
+                      <th>Applicant ID</th>
+                      <th>Applicant Name</th>
+                      <th>Contact Details</th>
+                      <th>Email ID</th>
+                      <th>Job Id</th>
+                      <th>Resume</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+
+                  </tbody>
+                </table>
+              </div>
+
+
+            </div> 
+          </section>
+
+
+  <!--==========================
+    Footer
+    ============================-->
+	<!--==========================
+		Footer
+		============================-->
+		
+		<!-- Begin Footer -->
+	<footer id="footer" class="clearfix">
+		<div class="content dark container">
+
+			<!-- Contact Links -->
+			<ul class="contact animated hatch clearfix">
+				<li class="grid-2">
+					<img src="{% static 'images/icons/telephone.png' %}" alt="telephone" width="20" height="20">
+				<!--<a href="tel:+918310455258" >+91 80 26760459  <br> +91 80 26638348 <br> +91 83104 55258 </a></li>-->
+				<a id="section4" href="tel:+918310455258">	<p> +91 9108462626</p></a>
+				<li class="grid-2">
+					<a id="contact-open" href="mailto:info@jyopa.com">
+						<img src="{% static 'images/icons/mail.png' %}" alt="mail" width="20" height="20">
+						<br>
+						info@jyopa.com 
+					</a>
+				</li>
+				<li class="grid-2">
+					<a href="https://www.google.com/maps/place/Jyopa+Connexions/@12.930727,77.573911,15z/data=!4m5!3m4!1s0x0:0x5619d3664540c31e!8m2!3d12.930727!4d77.573911" target="_blank">
+						<img src="{%  static 'images/icons/location.png' %}" alt="location" width="20" height="20">
+						<br>
+						104, Annex Block, Brigade MM, 7th Block Jayanagar, K.R.Road, Bangalore, Karnataka, India - 560070
+					</a>
+				</li>
+			</ul>
+		</div>
+
+		
+		<div class="container">
+
+			<!-- Social Links -->
+			<ul class="social-links grid-full">
+				<li><a href="https://www.facebook.com/Jyopa-Connexions-2265152990232041#" target="_blank"><img src="{% static 'images/icons/facebook-large1.png' %}" alt="facebook" width="36" height="36"></a></li>
+				<li><a href=" https://twitter.com/JyopaC" target="_blank"><img src="{% static 'images/icons/twitter-large.png' %}" alt="twitter" width="36" height="36"></a></li>
+				<li><a href="https://www.facebook.com/Jyopa-Connexions-2265152990232041#" target="_blank"><img src="{% static 'images/icons/insta4.png' %}" alt="instagram" width="36" height="36"></a></li>
+				<li><a href="https://www.linkedin.com/company/jyopa-connexions-a-unit-of-access-automation-pvtltd/?originalSubdomain=in" target="_blank"><img src="{% static 'images/icons/linkedin-large.png' %}" alt="linkedin" width="36" height="36"></a></li>
+
+
+				
+			</ul>
+
+			<!-- Copyright Info -->
+			<div style="font-size: 15px;margin-top:30px;" class="copyright grid-full"><h6>&copy; Copyright <strong>Jyopa</strong></strong>(Div.of<a style="color=white"; href="https://www.aaplweb.com/"> Access Automation Pvt.Ltd.)</a> All Rights Reserved</h6>
+			<!--	<div style="color:#fff;">
+					Designed by <a>CodeReels Inc</a>
+				</div>-->
+
+			</div>
+			
+		</div>
+	</footer>
+	
+	
+	
+	
+	
+	
+	
+	
+    
+
+  <!-- JavaScript Libraries -->
+  <script src="{% static 'lib/jquery/jquery.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'contactform/contactform.js' %}"></script>
+  <script src="{% static 'lib/jquery/jquery-migrate.min.js' %}"></script>
+  <script src="{% static 'js/main.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/fileDownload.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/employee.js' %}"></script>
+  <script src="{% static 'lib/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+  <script src="{% static 'lib/superfish/hoverIntent.js' %}"></script>
+  <script src="{% static 'lib/superfish/superfish.min.js' %}"></script>
+  <script src="{% static 'lib/wow/wow.min.js' %}"></script>
+  <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'lib/magnific-popup/magnific-popup.min.js' %}"></script>
+  <script src="{% static 'lib/sticky/sticky.js' %}"></script>
+
+
+
+
+</body>
+</html>

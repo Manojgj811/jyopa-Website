@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <script type="text/javascript" src="{% static 'js/sessionManager.js' %}"></script>
+  <script type="text/javascript">
+    var sId = readCookie('sessionId');
+    if (sId == "") {
+      window.location = "/home/";
+    }
+  </script>
+
+
+  <meta charset="utf-8">
+  <title>Jyopa | Home</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+<!--   <meta http-equiv = "refresh" content = "1; url = cons/index.html" />
+ -->  <meta content="" name="keywords">
+  <meta content="" name="description">
+  <link href="{% static 'img/favicon.png' %}" rel="icon">
+  <link href="{% static 'img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800|Montserrat:300,400,700" rel="stylesheet">
+  <link href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/ionicons/css/ionicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/magnific-popup/magnific-popup.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/ionicons/css/ionicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+  
+  <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/grid.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/style.css' %}">
+
+  
+   <style>
+  .form-control1{display: block;
+    width: 30%;
+    padding: .370rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+   
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+	}
+
+  </style>
+	
+</head>
+
+<body id="body">
+  <div class="overlay"></div>
+				<!-- Logo -->
+		<div class="logo">
+			<a id="top" href="#"><img src="{% static 'images/logo.jpg' %}" style="width: 20% ; margin-top: 0px" alt="Visia"></a>
+		</div
+
+<nav id="nav-menu-container" >
+	<ul class="nav-menu" style=" padding: 55px 8px; color: #060606;text-transform: uppercase; border-bottom: 2px solid #f0f0f0;">
+					<li><a href="/home"  id="showIntro"  style="padding-left: 217px;">Home</a></li>
+					<li><a href="/home#section2">About Us</a></li>
+					<li><a href="/home#section3">Services</a></li>
+					<li><a href="/jobseeker">Jobseeker</a></li>
+					<li><a href="/team">Team</a></li> 
+					<li><a href="#section4">Contact</a></li>
+					<li class="menu-has-children"><a id="username"></a>
+    <ul>
+					<li><a href="#" id="showProf" >Profile</a></li>
+                  <!--<li><a href="#" onclick="fileDownload()">Resume</a></li>-->
+					<li><a href="#" id="showJobs" >Applied Jobs</a></li>
+					<li><a href="#" style="color: red" onclick="logout()">Logout</a></li>
+                  </ul> 
+                 </li>   
+  </ul>
+</nav>
+<!-- #nav-menu-container -->
+
+
+
+
+       <section id="intro">
+
+    <div class="intro-content">
+      <h2>Your next job here!</h2>
+      <div>
+       <form action="/action_page.php" method="get">
+                  <input type="text" class="intro-search form-inline"  placeholder="ENTER SKILL (JAVA)" name="jobkey" id="jobkey"> 
+                  <a href="#portfolio" class="btn-projects scrollto search_job form-inline">Search</a>
+                  
+      </form>
+               <h4 style="color: red" id="errorMsg"></h4>
+      </div>
+    </div>
+
+    <div id="intro-carousel" class="owl-carousel" >
+      
+	  <div class="item" style="background-image: url('img/intro-carousel/1.jpg');"></div>
+      <div class="item" style="background-image: url('img/intro-carousel/2.jpg');"></div>
+      <div class="item" style="background-image: url('img/intro-carousel/3.jpg');"></div>
+      <div class="item" style="background-image: url('img/intro-carousel/4.jpg');"></div>
+      <div class="item" style="background-image: url('img/intro-carousel/5.jpg');"></div>
+	 
+    </div>
+
+  </section>
+     
+      <main id="main" >
+
+         <div class="jobs">
+
+            <div class="section-header">
+               <section id="styled_cards">
+                  <div class="container header">
+                     <div id="getJobs"  class="row">
+                     </div>
+                     <div class="form row">
+            <div class="text-center col-md-4"><button type="submit"  onclick="get_old_data()" >Previous</button></div>
+            <div class="text-center col-md-4"><button type="submit"  onclick="latest_jobs()">Recently Added</button></div>
+            <div class="text-center col-md-4"><button type="submit" onclick="get_new_data()">Next</button></div>
+          </div>
+                  </div>
+                  
+            </div>
+               
+         </div>
+      </main> 
+
+
+<!--==========================
+      User Interaction Section
+    ============================-->
+         <div  id="appliedJobs" class="appliedJobs">
+            <div class="section-header1">
+              <h2 style="font-size: 32px;color: #0c2e8a;text-transform: uppercase;font-weight: 700; position: relative;padding-bottom: 20px;">APPLIED JOBS</h2>
+              <span class="border" style="height: 4px;float:left;"></span>
+               <section id="styled_cards" style="padding-right:50%;">
+                  <div class="container header">
+                     <div id="applied_Jobs" class="row" style="width:1200px;">
+						
+                     </div>
+                  </div>
+               </section>
+            </div>
+         </div>
+
+        <!--Profile -->
+       <div id="userProfDet">
+        <div class="section-header">
+         <section id="styled_cards" style="padding-right:50%;">
+          <div class="container">
+            <div >
+              <div class="box wow fadeInLeft" id="" style="width:1200px;">
+                <div class="section-header" >
+                  <h2>Profile Details</h2>
+                </div>
+                <div class="form">
+                  <form  class="registerCandForm">
+                    <div class="form-row">
+                          <div class="form-group col-md-6"><label >Full Name</label>
+                            <input type="text" name="candidate_name" class="form-control" id="candidate_name" readonly="" />
+                          </div>
+                          <div class="form-group col-md-6"><label>Date of Birth</label>
+                            <input type="text" name="candidateDOB" class="form-control" id="candidateDOB" readonly="" />
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-6"><label>Email Address</label>
+                            <input type="text" name="candidate_emails" class="form-control" id="candidate_emails" readonly />
+                          </div>
+                          <div class="form-group col-md-6"><label>Contact Details</label>
+                            <input type="text" name="candidate_contacts" class="form-control" id="candidate_contacts" readonly="" />
+                          </div>
+                        </div>
+                        
+                        <label>Residing Address</label>
+                        <div class="form-row">
+                          <div class="form-group col-md-4">                            
+                            <input type="text" name="city" class="form-control" id="city"  readonly="" />
+                          </div>
+                          <div class="form-group col-md-4">
+                            <input type="text" name="state" class="form-control" id="state" readonly="" />
+                          </div>
+                          <div class="form-group col-md-4">
+                            <input type="text" name="country" class="form-control" id="country" readonly="" />
+                          </div>
+                        </div>
+                      </div>
+                        
+                        <div class="form-group">
+                          <div class="form-row">
+                            <button   onclick="fileDownload()" style="background: #0c2e8a; border: 0; border-radius: 3px;padding: 10px 30px; color: #fff; transition: 0.4s;cursor: pointer;margin-top: 5px;">View Resume</button>
+                            &nbsp&nbsp &nbsp&nbsp
+							<!-- <button type="submit">
+                              <label for="file">
+                                Upload resume
+                              </label></button> -->
+                              <div class="file btn btn-sm" style="position: relative; overflow: hidden;background: #0c2e8a; border: 0; border-radius: 3px;padding: 10px 30px; color: #fff; transition: 0.4s;cursor: pointer;margin-top: 5px;">
+                                Upload Resume
+                               <input type="file"  id="update_file"  onchange="get_file( document.getElementById('update_file').files);" style="position: absolute;font-size: 50px;opacity: 0; right: 0;top: 0;"/>
+                              </div>
+                            <div class="progress" id="progress" style="visibility: hidden;">
+                              <div id="progress-bar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                              </div>
+                              <div class="form-row" id="form_buttons" style="visibility: hidden;" ><div>
+                                <div class="text-center col-md-6"><button   onclick="update_Resume();" style="background: #0c2e8a; border: 0; border-radius: 3px;padding: 10px 30px; color: #fff; transition: 0.4s;cursor: pointer;margin-top: 5px;" >Done</button></div>
+                                
+                              </div>
+                              </div>
+                           <!-- <input type="file" class="form-control" name="cand_file" id="cand_file" placeholder="Upload A PDF File" data-rule="minlen:4" data-msg="Please select a file" accept="application/pdf" onchange="get_unsigned_doc( document.getElementById('cand_file').files);" />
+                        <div class="validation"></div>-->
+                             
+                          </div>  
+                      </div>
+                       </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </section>
+        </div>
+      </div>
+    <!-- #User -->
+
+	<!--==========================
+		Footer
+		============================-->
+		
+		<!-- Begin Footer -->
+	<footer id="footer" class="clearfix">
+		<div class="content dark container">
+
+			<!-- Contact Links -->
+			<ul class="contact animated hatch clearfix">
+				<li class="grid-2">
+					<img src="{% static 'images/icons/telephone.png' %}" alt="telephone" width="20" height="20">
+				<a href="tel:+918310455258" id="section4">+91 80 26760459  <br> +91 80 26638348 <br> +91 83104 55258 </a></li>
+				<li class="grid-2">
+					<a id="contact-open" href="mailto:info@jyopa.com">
+						<img src="{% static 'images/icons/mail.png' %}" alt="mail" width="20" height="20">
+						<br>
+						info@jyopa.com 
+					</a>
+				</li>
+				<li class="grid-2">
+					<a href="https://www.google.com/maps/place/Jyopa+Connexions/@12.930727,77.573911,15z/data=!4m5!3m4!1s0x0:0x5619d3664540c31e!8m2!3d12.930727!4d77.573911" target="_blank">
+						<img src="{%  static 'images/icons/location.png' %}" alt="location" width="20" height="20">
+						<br>
+						104, Annex Block, Brigade MM, 7th Block Jayanagar, K.R.Road, Bangalore, Karnataka, India - 560070
+					</a>
+				</li>
+			</ul>
+		</div>
+
+		
+		<div class="container">
+
+			<!-- Social Links -->
+			<ul class="social-links grid-full">
+				<li><a href="https://www.facebook.com/Jyopa-Connexions-2265152990232041#" target="_blank"><img src="{% static 'images/icons/facebook-large1.png' %}" alt="facebook" width="36" height="36"></a></li>
+				<li><a href=" https://twitter.com/JyopaC" target="_blank"><img src="{% static 'images/icons/twitter-large.png' %}" alt="twitter" width="36" height="36"></a></li>
+				<li><a href="https://www.instagram.com/jyopaconnexions/" target="_blank"><img src="{% static 'images/icons/insta4.png' %}" alt="instagram" width="36" height="36"></a></li>
+				<li><a href="https://www.linkedin.com/company/jyopa-connexions-a-unit-of-access-automation-pvtltd/?originalSubdomain=in" target="_blank"><img src="{% static 'images/icons/linkedin-large.png' %}" alt="linkedin" width="36" height="36"></a></li>
+
+
+				
+			</ul>
+
+			<!-- Copyright Info -->
+			<div style="font-size: 15px;" class="copyright grid-full"><h6>&copy; Copyright <strong>Jyopa</strong>. All Rights Reserved</h6>
+				<!--<div style="color:#fff;">
+					Designed by <a>CodeReels Inc</a>
+				</div>-->
+
+			</div>
+			
+		</div>
+	</footer>
+	
+	
+	
+	
+	
+
+
+	<!-- JavaScript Libraries -->
+   <script src="{% static 'lib/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'lib/jquery/jquery-migrate.min.js' %}"></script>
+  <script src="{% static 'js/main.js' %}"></script>
+  <script src="{% static 'js/file64.js' %}"></script>
+  <script src="{% static 'js/date_generator.js' %}"></script>
+  <script type="text/javascript" src="{% static 'contactform/contactform.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/fileDownload.js' %}"></script>
+  <script src="{% static 'js/user.js' %}"></script>
+  
+  <script src="{% static 'lib/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+  <script src="{% static 'lib/superfish/hoverIntent.js' %}"></script>
+  <script src="{% static 'lib/superfish/superfish.min.js' %}"></script>
+  <script src="{% static 'lib/wow/wow.min.js' %}"></script>
+  <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'lib/magnific-popup/magnific-popup.min.js' %}"></script>
+  <script src="{% static 'lib/sticky/sticky.js' %}"></script>
+  <script src="{% static 'js/recentcandidatejobs.js' %}"></script>      
+
+</body>
+</html>

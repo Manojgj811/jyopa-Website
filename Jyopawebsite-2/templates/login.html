@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jyopa | Login</title>
+	
+	{% load static %}
+	
+	 
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
+    <link rel="shortcut icon" href="images/favicon.png">
+    <link href="{% static 'img/favicon.png' %}" rel="icon">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800|Montserrat:300,400,700" rel="stylesheet">
+	<link href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+	<link href="{% static 'lib/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">                              
+                                														
+														
+  
+								                          
+	<link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+	<link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+	<link href="{% static 'css/style.css' %}" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="{% static 'stylesheets/reset.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'stylesheets/grid.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+	
+<style>
+.validation{
+	color: red;
+
+}
+
+</style>	
+  
+ </head>
+		
+    
+ 
+
+<!--==========================
+		Header
+		============================-->
+<!--<body id="body">-->
+<body  class="royal_loader">
+
+ <header id="header">       
+	<div class="bs-example" style=" background: #fff;padding: 2px 0px;z-index: 99;border-bottom: 2px solid #f0f0f0;">
+		<nav class="navbar navbar-expand-md navbar-light margin-top: 45px; ">
+			<div class="logo">
+				<a id="top" href="#"><img src="{% static 'images/logo.jpg' %}" style="width: 20% ; " alt="Visia"></a>
+			</div>
+
+
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarCollapse" >
+          <div class="navbar-nav ml-auto"   style="font-size:15px;padding-right:4.5em;">
+                <a style ="padding-right: 2.5rem;"href="/home" class="nav-item nav-link">HOME</a>
+				<a style ="padding-right: 2.5rem;" href="/home#section2" class="nav-item nav-link">ABOUT</a>
+                <a style ="padding-right: 2.5rem;" href="/home#section3" class="nav-item nav-link">SERVICES</a>
+                <!--<a style ="padding-right: 2.5rem;" href="/team" class="nav-item nav-link">TEAM</a>-->
+                
+                <a style ="padding-right: 2.5rem;" href="/jobseeker" class="nav-item nav-link">JOBSEEKER</a>
+                <a style ="padding-right: 2.5rem;" href="/home#section4" class="nav-item nav-link">CONTACT</a>
+                <a href="/login" class="nav-item nav-link">LOGIN</a>
+            </div>
+         </div>
+	</nav>
+	</div>
+</header>
+
+
+<div style="display:none;" id="resumeModal" class="uploadRes" role="dialog">
+    <div class="modal-dialog modal-lg">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+      <div class="modal-body">
+      <div id="signup">
+        <section id="reclog">
+          <div class="section-header">
+            <h2>Upload Resume without SignUp!</h2>
+          </div>
+            <div class="row">
+              <div class="col-lg">
+                <div class="box" id="signin">
+                  <div class="form">
+                      <div id="sendmessage">Your Resume has reached us, We will contact you soon!</div>
+                      <div id="errormessage"></div>
+                    <form class="upload_resume">
+                      <div class="form-group"><label class="asterisk_input">Full Name</label>
+                       <input type="text" name="cand_name" class="form-control" id="cand_name"  placeholder=" Fullname" data-rule="minlen:3" data-msg="Please enter a valid name" />
+                        <div class="validation"></div>
+                      </div>
+                      <div class="form-group"><label class="asterisk_input">Email</label>
+                        <input type="email" name="cand_email" class="form-control" id="cand_email" placeholder=" Email" data-rule="email" data-msg="Please enter a valid email" />
+                        <div class="validation"></div>
+                      </div>
+                      <div class="form-group"><label class="asterisk_input">Contact Details</label>
+                        <input type="text" name="cand_ct" class="form-control" id="cand_ct" placeholder=" Your contact number" data-rule="minlen:10" data-msg="Please enter a valid number" />
+                        <div class="validation"></div>
+                      </div>
+                      <div class="form-group"><label class="asterisk_input">Resume</label>
+                        <input type="file" class="form-control" name="cand_file" id="cand_file" placeholder="Upload A PDF File" data-rule="minlen:4" data-msg="Please select a file" accept="application/pdf" onchange="get_unsigned_doc( document.getElementById('cand_file').files);" />
+                        <div class="validation"></div>
+                        <div class="progress" id="progress" style="visibility: hidden;">
+                        <div id="progress-bar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                      <div class="form-row" id="form_buttons" style="visibility: hidden;" >
+                        <div class="text-center col-md-6"><button type="submit" class="upload_file" >Upload File</button></div>
+                        <div class="text-center col-md-6"><button type="reset">Reset</button></div>
+                      </div>
+                      <div style="margin-top: 5px">
+                              <div>Changed your mind?<a href=""  class ="up-regNow" data-dismiss="modal" data-toggle="modal" data-target="#jopSignupModal"> Register Now!</a></div>
+                            </div>
+                    </form>
+                  </div>
+                </div>
+
+
+              </div>
+               </div>
+             </section>
+       
+      </div>
+      
+    </div>
+  </div>
+</div>
+</div>
+  	
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+
+
+
+<div class="container login-Form">
+			<div style="height:100px;"></div>
+				<div style="margin-right: -325px;margin-left: 108px;" class="row align-items-center" >
+					<div  class="col-4 shadow  mb-5 bg-white rounded" style="height:400px;box-shadow: 0 9px 16px 0 rgb(0 106 194 / 20%);">
+						<div style="padding-left:15%;margin-top:20%;">
+				
+        
+			<div>
+			<h2 style="color:#757575;">Don't want to sign up?</h2>
+			</div>
+	  
+			<div>
+				<button  class="resumeUp" data-dismiss="modal" data-toggle="modal" data-target="#resumeModal" style= "background: #0c2e8a;
+    border: 0;
+    border-radius: 3px;
+    padding: 10px 30px;
+    color: #fff;
+    transition: 0.4s;
+    cursor: pointer;
+    margin-top: 5px; ">Upload Resume</button>
+			</div>
+	  
+					</div>
+				</div>
+				<div class="col-4 shadow  mb-5 bg-white rounded" style="height:500px;box-shadow: 0 9px 16px 0 rgb(0 106 194 / 20%);">
+	
+                  <div class="section-header">
+                    <h2> Login</h2>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg">
+                      <div class="box" id="signin">
+                        <div class="form">
+                          <form action="" method="post" role="form" class="cand_login_form">
+                           <!-- <div class="form-group">
+                              <input type="text" name="candidateUsername" class="form-control" id="candidateUsername" placeholder="Username" data-rule="minlen:4" data-msg="Please enter a valid username" />
+                              <div class="validation"></div>
+                            </div>-->
+							<div class="form-group">
+                            <input type="text" name="candidate_Emails" class="form-control" id="candidate_Emails" placeholder="Email" data-rule="minlen:4" data-msg="Please enter a valid email"  />
+                            <div class="validation"></div>
+                          </div>
+                           
+							
+							<div class="form-group" class="password-show-card">
+                              <input type="password" class="form-control" name="candidatePassword" id="candidatePassword" placeholder=" Password" data-rule="minlen:4" data-msg="Please enter valid password" />
+                              <!--<i style="position: absolute;top: 65px;right: 20px;cursor: pointer;color: #757575;" class="fa fa-eye password-show"></i>-->
+							  <div class="validation"></div>
+                            </div>
+							
+							
+                            <div class="form-row">
+                              <div class="text-center col-md-12"><button style=" width:230px;height:40px;border-radius:3px;background: #0c2e8a;
+    border: 0;
+    border-radius: 3px;
+    padding: 10px 30px;
+    color: #fff;
+    transition: 0.4s;
+    cursor: pointer;
+    margin-top: 5px;" type="submit"  class="cand_login">Login</button>
+							  </div>  
+                            </div>
+							
+							
+								<!--<div class="sep">
+							<div class="hr-sect">Or</div>
+						</div>
+						
+							<br>
+							
+							<div class="login-btns">
+								<div class="socialbtn google">
+									<a href=""><i class="google-icon"></i>
+										<img style="width:8%;margin-left: 14px;" class ="ico-go" class="google-icon" src="{% static 'images/ic-google.png' %}">
+											<span style ="color:#757575; padding-left: 118px;">SignIn With Google</span>
+									</a>
+								</div>
+					   
+							<br>
+					   
+								<div class="socialbtn facebook">
+									<a href=""><i class="fb-icon"></i>
+										<img style="width:8%;margin-left: 14px;" class ="ico-go" class="google-icon" src="{% static 'images/ic-fb.png' %}">
+											<span style ="color:#757575; padding-left: 118px;">SignIn With Facebook</span>
+									</a>
+								</div>
+							</div>
+			  
+						<br>-->
+													<!--<button><a href="">Google Login</a></button>
+													<button><a href="">Facebook Login</a></button>-->
+							
+							
+                            <div style="margin-top: 40px;">
+                              <div style="font-size: 20px;">Not Yet Registered?<a href="" id="register_log" class="register-Btn"  data-dismiss="modal" data-toggle="modal" data-target="#jopSignupModal"> Register Now!</a></div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+               
+                
+              </div>
+      <!----------------->
+    </div>
+</div>
+ 
+  
+	
+	
+	
+	
+	
+	
+	
+		
+		
+ <div id="jopSignupModal" class="register-Form"  role="dialog" style = "display:none;">
+	<div class="modal-dialog modal-lg">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-body">
+              <div id="signup">
+                <section id="reclog">
+                  <div class="section-header">
+                    <h2>Register at Jyopa</h2>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg">
+                      <div class="box" id="signin">
+                        <div class="form">
+                      <div id="sendmessage">Registration Successfull!</div>
+                      <div id="errormessage"></div>
+                      <form  class="registerCandForm">
+                       
+                        <div class="form-row">
+                          <div class="form-group col-md-6"><label class="asterisk_input">Full Name</label>
+                            <input type="text" name="candidateName" class="form-control" id="candidateName" placeholder="Name" data-rule="minlen:3" data-msg="Please enter some value" />
+                            <div class="validation"></div>
+                          </div>
+                          <div class="form-group col-md-6"><label class="asterisk_input">Date of Birth (DD/MM/YYYY)</label>
+                            <input type="date" name="candidateDOB" class="form-control" id="candidateDOB" placeholder="DD/MM/YYYY" data-rule="minlen:10" data-msg="Please enter appropriate value" />
+                            <div class="validation"></div>
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-6"><label class="asterisk_input">Email Address</label>
+                            <input type="text" name="candidateEmails" class="form-control" id="candidateEmails" placeholder="Email" data-rule="email" data-msg="Please enter valid mail address" />
+                            <div class="validation"></div>
+                          </div>
+                          <div class="form-group col-md-6"><label class="asterisk_input">Contact Details</label>
+                            <input type="text" name="candidateContactNumbers" class="form-control" id="candidateContactNumbers" placeholder="Contact" data-rule="minlen:10" data-msg="Please enter a valid number" />
+                            <div class="validation"></div>
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-6"><label class="asterisk_input">Desired Username</label>
+                            <input type="text" name="candidate_Username" class="form-control" id="candidate_Username" placeholder="User Name" data-rule="minlen:5" data-msg="Please enter atleast 5 chars" />
+                            <div class="validation"></div>
+                          </div>
+                          <div class="form-group col-md-6"><label class="asterisk_input">Password</label>
+                            <input type="password" name="candidate_Password" class="form-control" id="candidate_Password" placeholder="Password" data-rule="minlen:8" data-msg="Please enter atleast 8 chars" />
+                            <div class="validation"></div>
+                          </div>
+                        </div>
+                        <label class="asterisk_input">Residing Address</label>
+                        <div class="form-row">
+                          <div class="form-group col-md-4">                            
+                            <input type="text" name="jobCity" class="form-control" id="jobCity" placeholder="City" data-rule="minlen:3" data-msg="Please enter some value" />
+                            <div class="validation"></div>
+                          </div>
+                          <div class="form-group col-md-4">
+                            <input type="text" name="jobState" class="form-control" id="jobState" placeholder="State" data-rule="minlen:0" data-msg="Please enter at least 4 chars" />
+                            <div class="validation"></div>
+                          </div>
+                          <div class="form-group col-md-4">
+                            <input type="text" name="jobCountry" class="form-control" id="jobCountry" placeholder="Country" data-rule="minlen:0" data-msg="Please enter at least 4 chars" />
+                            <div class="validation"></div>
+                          </div>
+                        </div>
+                         <label class="asterisk_input">Qualification</label>
+                        <div class="form-row">
+                          <div class="form-group col-md-4">                            
+                            <input type="text" name="education" class="form-control" id="education" placeholder="Education" data-rule="minlen:2" data-msg="Please enter some value" />
+                            <div class="validation"></div>
+                          </div>
+                          <div class="form-group col-md-4">
+                            <input type="text" name="college" class="form-control" id="college" placeholder="College Details" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                            <div class="validation"></div>
+                          </div>
+                          <div class="form-group col-md-4">
+                            <input type="text" name="candidateScore" class="form-control" id="candidateScore" placeholder="Score (8.6)" data-rule="minlen:1" data-msg="Please enter some value" />
+                            <div class="validation"></div>
+                          </div>
+                        </div>
+                         <label>Any Experiences</label>
+                        <div class="form-row">
+                          <div class="form-group col-md-4">                            
+                            <input type="text" name="compdet" class="form-control" id="compdet" placeholder=" Last Company Name" data-rule="minlen:0" data-msg="Please enter some value" />
+                          </div>
+                          <div class="form-group col-md-4">
+                            <input type="text" name="pos" class="form-control" id="pos" placeholder="Position" data-rule="minlen:0" data-msg="Please enter at least 2 chars" />
+                          </div>
+                          <div class="form-group col-md-4">
+                            <input type="text" name="months" class="form-control" id="months" placeholder="Months Worked" data-rule="minlen:0" data-msg="Please enter some value" />
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-4"><label>Notice Period</label>                          
+                            <input type="number" name="candidateNoticePeriod" class="form-control" id="candidateNoticePeriod" placeholder="Notice Period in Months" data-rule="minlen:0" data-msg="Please enter some value" />
+                          </div>
+                          <div class="form-group col-md-4"><label>Current CTC</label>
+                            <input type="text" name="candidateCurrentCTC" class="form-control" id="candidateCurrentCTC" placeholder="CTC in figures" data-rule="minlen:0" data-msg="Please enter Valid amount" />
+                          </div>
+                          <div class="form-group col-md-4"><label>Expected CTC</label>
+                            <input type="text" name="candidateExpectedCTC" class="form-control" id="candidateExpectedCTC" placeholder="CTC in figures" data-rule="minlen:0" data-msg="Please enter Valid amount" />
+                          </div>
+                        </div>
+                        <label>Add Skills</label>
+                        <div class="form-row">
+                          <div class="form-group col-md-4">                            
+                            <input type="text" name="candidateSkill1" class="form-control" id="candidateSkill1" placeholder=" Skill 1" data-rule="minlen:0" data-msg="Please enter some value" />
+                          </div>
+                          <div class="form-group col-md-4">
+                            <input type="text" name="candidateSkill2" class="form-control" id="candidateSkill2" placeholder="Skill 2" data-rule="minlen:0" data-msg="Please enter at least 2some value" />
+                          </div>
+                          <div class="form-group col-md-4">
+                            <input type="text" name="candidateSkill3" class="form-control" id="candidateSkill3" placeholder="Skill 3" data-rule="minlen:0" data-msg="Please enter some value" />
+                          </div>
+                        </div>
+                         <div class="form-group">
+                          <label class="asterisk_input">Upload Resume/CV</label>
+                         <input type="file" class="form-control" name="cand_file1" id="cand_file1" placeholder="Upload A PDF File" data-rule="minlen:1" data-msg="Please upload a file" accept="application/pdf" onchange="get_signed_doc( document.getElementById('cand_file1').files)" />
+                        <div class="validation"></div>
+                        <div class="progress" id="progress1" style="visibility: hidden;">
+                        <div id="progress-bar1" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                        <div class="form-row" id="form_buttons1" style="visibility: hidden;">
+                          <div class="text-center col-md-6"><button type="submit" class="regist_cand togglingClass">Register</button></div>
+                          <div class="text-center col-md-6"><button type="reset">Reset</button></div>
+                        </div>
+                        <div style="margin-top: 5px">
+                              <div>Already Registerd?<a href="" data-toggle="modal" class="togglingClass" data-target="#jopSigninModal"> Sign in now!</a></div>
+                            </div>
+                      </form>
+                    </div>
+                      </div>
+
+
+                    </div>
+                  </div>
+                </section>
+             <!--   <div class="modal-footer">
+                  <button type="button" class="togglingClass btn btn-default" data-dismiss="modal">Close</button>
+                </div>-->
+              </div>
+
+            </div>
+          </div>
+        </div>
+</div>
+		 
+	 
+
+
+<div class="modal fade" id="resumeModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+      <div class="modal-body">
+      <div id="signup">
+        <section id="reclog">
+          <div class="section-header">
+            <h2>Upload Resume without SignUp!</h2>
+          </div>
+            <div class="row">
+              <div class="col-lg">
+                <div class="box" id="signin">
+                  <div class="form">
+                      <div id="sendmessage">Your Resume has reached us, We will contact you soon!</div>
+                      <div id="errormessage"></div>
+                    <form class="upload_resume">
+                      <div class="form-group"><label class="asterisk_input">Full Name</label>
+                       <input type="text" name="cand_name" class="form-control" id="cand_name"  placeholder=" Fullname" data-rule="minlen:3" data-msg="Please enter a valid name" />
+                        <div class="validation"></div>
+                      </div>
+                      <div class="form-group"><label class="asterisk_input">Email</label>
+                        <input type="email" name="cand_email" class="form-control" id="cand_email" placeholder=" Email" data-rule="email" data-msg="Please enter a valid email" />
+                        <div class="validation"></div>
+                      </div>
+                      <div class="form-group"><label class="asterisk_input">Contact Details</label>
+                        <input type="text" name="cand_ct" class="form-control" id="cand_ct" placeholder=" Your contact number" data-rule="minlen:10" data-msg="Please enter a valid number" />
+                        <div class="validation"></div>
+                      </div>
+                      <div class="form-group"><label class="asterisk_input">Resume</label>
+                        <input type="file" class="form-control" name="cand_file" id="cand_file" placeholder="Upload A PDF File" data-rule="minlen:4" data-msg="Please select a file" accept="application/pdf" onchange="get_unsigned_doc( document.getElementById('cand_file').files);" />
+                        <div class="validation"></div>
+                        <div class="progress" id="progress" style="visibility: hidden;">
+                        <div id="progress-bar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                      <div class="form-row" id="form_buttons" style="visibility: hidden;" >
+                        <div class="text-center col-md-6"><button type="submit" class="upload_file" >Upload File</button></div>
+                        <div class="text-center col-md-6"><button type="reset">Reset</button></div>
+                      </div>
+                      <div style="margin-top: 5px">
+                              <div>Changed your mind?<button class ="up-regNow" data-dismiss="modal" data-toggle="modal" data-target="#jopSignupModal"> Register Now!</button></div>
+                            </div>
+                    </form>
+                  </div>
+                </div>
+
+
+              </div>
+               </div>
+             </section>
+       <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>-->
+      </div>
+      
+    </div>
+  </div>
+</div>
+</div>
+  	
+	
+	
+		
+		
+  <!--==========================
+         Footer
+         ============================-->
+		 
+		 
+		 
+         <!-- Begin Footer -->
+	<footer id="footer" class="clearfix">
+		<div class="content dark container">
+
+			<!-- Contact Links -->
+			<ul class="contact animated hatch clearfix">
+				<li style="display:inline-block;"class="grid-2">
+					<img src="{% static 'images/icons/telephone.png' %}" alt="telephone" width="20" height="20">
+					<!--<p> +91 80 26760459  <br> +91 80 26638348 <br> +91 83104 55258 </p>-->
+					<!--<a id="section4" href="tel:+918310455258">	<p> +91 80 26760459  <br> +91 80 26638348 <br> +91 83104 55258 </p></a>-->
+					<a id="section4" href="tel:+918310455258">	<p> +91 9108462626</p></a>
+				</li>
+				<li style="display:inline-block;" class="grid-2">
+					<a id="contact" href="mailto:info@jyopa.com">
+						<img src="{% static 'images/icons/mail.png' %}" alt="mail" width="20" height="20">
+						<br>
+						info@jyopa.com
+					</a>
+				</li>
+				<li style="display:inline-block;"class="grid-2">
+					<a href="https://www.google.com/maps/place/Jyopa+Connexions/@12.930727,77.573911,15z/data=!4m5!3m4!1s0x0:0x5619d3664540c31e!8m2!3d12.930727!4d77.573911" target="_blank">
+						<img src="{%  static 'images/icons/location.png' %}" alt="location" width="20" height="20">
+						<br>
+						104, Annex Block, Brigade MM, 7th Block Jayanagar, K.R.Road, Bangalore, Karnataka, India - 560070
+					</a>
+				</li>
+			</ul>
+		</div>
+
+		
+
+	<div class="container">
+
+			<!-- Social Links -->
+			<ul class="social-links grid-full">
+			
+				<li style="display:inline-block;"><a href="https://www.facebook.com/Jyopa-Connexions-2265152990232041#" target="_blank"><img src="{% static 'images/icons/facebook-large1.png' %}" alt="facebook" width="36" height="36"></a></li>
+				<li style="display:inline-block;"><a href=" https://twitter.com/JyopaC" target="_blank"><img src="{% static 'images/icons/twitter-large.png' %}" alt="twitter" width="36" height="36"></a></li>
+				<li style="display:inline-block;"><a href="https://www.facebook.com/Jyopa-Connexions-2265152990232041#" target="_blank"><img src="{% static 'images/icons/insta4.png' %}" alt="instagram" width="36" height="36"></a></li>
+				<li style="display:inline-block;"><a href="https://www.linkedin.com/company/jyopa-connexions-a-unit-of-access-automation-pvtltd/?originalSubdomain=in" target="_blank"><img src="{% static 'images/icons/linkedin-large.png' %}" alt="linkedin" width="36" height="36"></a></li>
+				
+			</ul>
+
+			<!-- Copyright Info -->
+			<div style="font-size: 15px;" class="copyright grid-full"><h6>&copy; Copyright <strong>Jyopa</strong></strong>(Div.of<a style="color=white;" href="https://www.aaplweb.com/"> Access Automation Pvt.Ltd.)</a> All Rights Reserved</h6>
+					<!--<div style="color:#fff;">
+						Designed by <a>Codereels Inc</a>
+					</div>-->
+
+			</div>
+			
+			
+	</div>
+</footer>
+
+<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+  <script src="{% static 'contactform/contactform.js' %}"></script>
+  <script src="{% static 'js/file64.js' %}"></script>
+  <script src="{% static 'js/login.js' %}"></script>
+  <script src="{% static 'js/main.js' %}"></script>
+  <script src="{% static 'lib/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'lib/jquery/jquery-migrate.min.js' %}"></script>
+  <script src="{% static 'js/sessionManager.js' %}"></script>
+  
+ <!--<script src="{% static 'lib/bootstrap/js/bootstrap.bundle.min.js' %}"></script>-->
+	<script src="{% static 'lib/easing/easing.min.js' %}"></script>
+	<script src="{% static 'lib/superfish/hoverIntent.js' %}"></script>
+	<script src="{% static 'lib/superfish/superfish.min.js' %}"></script>
+	<script src="{% static 'lib/wow/wow.min.js' %}"></script>
+	<script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+	<script src="{% static 'lib/magnific-popup/magnific-popup.min.js' %}"></script>
+	<script src="{% static 'lib/sticky/sticky.js' %}"></script>
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
+ 
+  
+<script>
+const registerBtn = document.querySelector(".register-Btn");
+const loginForm = document.querySelector(".login-Form");
+const registerForm = document.querySelector(".register-Form");
+const toggler = document.querySelector(".togglingClass");
+const divResume = document.querySelector(".uploadRes");
+const upResBtn = document.querySelector(".resumeUp");
+const upRegBtn = document.querySelector(".up-regNow");
+registerBtn.addEventListener('click', function(e){
+		e.preventDefault(); 
+        loginForm.style.display = "none"; 
+        registerForm.style.display = "inline";
+});
+toggler.addEventListener('click', function(e){
+        e.preventDefault();
+        registerForm.style.display = "none"; 
+        loginForm.style.display = "inline";
+});
+upResBtn.addEventListener('click', function(e){
+		e.preventDefault();
+		loginForm.style.display = "none";
+		divResume.style.display = "inline";
+});
+upRegBtn.addEventListener('click', function(e){
+	e.preventDefault();
+	divResume.style.display = "none";
+	registerForm.style.display = "inline";
+});
+</script> 
+
+<script>
+	$(function(){
+		$(".password-show").click(function(event) {
+			$(this).toggleClass('fa-eye-slash');
+			var x = $(".form-control").attr("type"); //getting attribute in variable
+			if (x == "password") 
+			{
+				$(".form-control").attr("type","text"); //setting attribute on condition
+			}
+			else
+			{
+				$(".form-control").attr("type","password");
+			}
+		});
+	})
+</script>
+
+
+</body>
+</html>
